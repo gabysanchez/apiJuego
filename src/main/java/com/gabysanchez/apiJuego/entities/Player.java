@@ -1,0 +1,53 @@
+package com.gabysanchez.apiJuego.entities;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+enum Sex {
+    hombre,
+    mujer,
+    otro
+}
+@DatabaseTable(tableName = "Jugadores")
+public class Player {
+    @DatabaseField(id = true)
+    private String alias;
+    @DatabaseField
+    private Sex sexo;
+    @DatabaseField
+    private String pais;
+    @DatabaseField
+    private int edad;
+    @DatabaseField
+    private Character personaje;
+
+    public Player() { }
+
+    public Player(String alias, Sex sexo, String pais, int edad, Character personaje) {
+        this.alias = alias;
+        this.sexo = sexo;
+        this.pais = pais;
+        this.edad = edad;
+        this.personaje = personaje;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public Sex getSexo() {
+        return sexo;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public Character getPersonaje() {
+        return personaje;
+    }
+}
+
