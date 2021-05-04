@@ -1,6 +1,7 @@
 package com.gabysanchez.apiJuego.entities;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import io.swagger.annotations.ApiModelProperty;
 
 enum Sex {
     hombre,
@@ -9,14 +10,24 @@ enum Sex {
 }
 @DatabaseTable(tableName = "Jugadores")
 public class Player {
+
+    @ApiModelProperty(position = 0)
     @DatabaseField(id = true)
     private String alias;
+
+    @ApiModelProperty(position = 1)
     @DatabaseField
     private Sex sexo;
+
+    @ApiModelProperty(position = 2)
     @DatabaseField
     private String pais;
+
+    @ApiModelProperty(position = 3)
     @DatabaseField
     private int edad;
+
+    @ApiModelProperty(position = 4)
     @DatabaseField(foreign = true, columnName = "personaje")
     private Character personaje;
 

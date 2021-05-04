@@ -2,13 +2,20 @@ package com.gabysanchez.apiJuego.entities;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import io.swagger.annotations.ApiModelProperty;
 
 @DatabaseTable(tableName = "Personajes")
 public class Character {
+
+    @ApiModelProperty(position = 0)
     @DatabaseField(id = true)
     private String nombre;
+
+    @ApiModelProperty(position = 1)
     @DatabaseField
     private String color;
+
+    @ApiModelProperty(position = 2)
     @DatabaseField
     private int salud;
 
