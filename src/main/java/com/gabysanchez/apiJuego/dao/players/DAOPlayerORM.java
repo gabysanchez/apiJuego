@@ -2,6 +2,7 @@ package com.gabysanchez.apiJuego.dao.players;
 
 import com.gabysanchez.apiJuego.dao.DAOOperations;
 import com.gabysanchez.apiJuego.db.DBConnectionORM;
+import com.gabysanchez.apiJuego.entities.Character;
 import com.gabysanchez.apiJuego.entities.Player;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -25,37 +26,80 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
 
     @Override
     public void add(Player player) {
-
+        try {
+            daoPlayerORM.create(player);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
     @Override
     public void update(Player player) {
-
+        try {
+            daoPlayerORM.update(player);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Player player) {
-
+        try {
+            daoPlayerORM.delete(player);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void clear() {
-
+        try {
+            daoPlayerORM.delete(get());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public List<Player> get() {
-        return null;
+        List<Player> players = null;
+        try {
+            players = daoPlayerORM.queryForAll();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return players;
     }
 
     @Override
     public List<Player> getPaged(int page) {
-        return null;
+        List<Player>players = null;
+        try {
+            List<Player> playersAll = daoPlayerORM.queryForAll();
+            int maxSize = playersAll.size();
+            int minIndex = page * 10;
+            int maxIndex = (page+1)*10;
+            if(minIndex < maxSize && maxIndex < maxSize){
+                players = playersAll.subList(minIndex,maxIndex);
+            }
+            else if (maxIndex > maxSize){
+                players = playersAll.subList(minIndex,maxSize);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return players;
     }
 
     @Override
     public Player get(String s) {
-        return null;
+        Player player = null;
+        try {
+            player = daoPlayerORM.queryForId(s);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return player;
     }
 }

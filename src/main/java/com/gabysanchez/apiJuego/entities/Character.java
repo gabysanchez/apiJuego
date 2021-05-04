@@ -31,4 +31,16 @@ public class Character {
     public int getSalud() {
         return salud;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
 }
