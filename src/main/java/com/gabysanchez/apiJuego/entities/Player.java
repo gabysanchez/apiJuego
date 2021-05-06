@@ -17,24 +17,30 @@ public class Player {
 
     @ApiModelProperty(position = 1)
     @DatabaseField
-    private Sex sexo;
+    private String password;
 
     @ApiModelProperty(position = 2)
     @DatabaseField
-    private String pais;
+    private Sex sexo;
+
 
     @ApiModelProperty(position = 3)
     @DatabaseField
-    private int edad;
+    private String pais;
 
     @ApiModelProperty(position = 4)
+    @DatabaseField
+    private int edad;
+
+    @ApiModelProperty(position = 5)
     @DatabaseField(foreign = true, columnName = "personaje")
     private Character personaje;
 
     public Player() { }
 
-    public Player(String alias, String sexo, String pais, int edad, Character personaje) {
+    public Player(String alias, String password, String sexo, String pais, int edad, Character personaje) {
         this.alias = alias;
+        this.password = password;
         this.sexo = Sex.valueOf(sexo);
         this.pais = pais;
         this.edad = edad;
@@ -79,6 +85,14 @@ public class Player {
 
     public void setPersonaje(Character personaje) {
         this.personaje = personaje;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

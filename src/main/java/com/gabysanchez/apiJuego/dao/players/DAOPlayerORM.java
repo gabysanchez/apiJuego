@@ -2,6 +2,7 @@ package com.gabysanchez.apiJuego.dao.players;
 
 import com.gabysanchez.apiJuego.dao.DAOOperations;
 import com.gabysanchez.apiJuego.db.DBConnectionORM;
+import com.gabysanchez.apiJuego.encryptors.EncryptionCesar;
 import com.gabysanchez.apiJuego.entities.Character;
 import com.gabysanchez.apiJuego.entities.Player;
 import com.j256.ormlite.dao.Dao;
@@ -26,16 +27,17 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
 
     @Override
     public void add(Player player) {
+        player.setPassword(EncryptionCesar.getInstance().ecode(player.getPassword()));
         try {
             daoPlayerORM.create(player);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     @Override
     public void update(Player player) {
+        player.setPassword(EncryptionCesar.getInstance().ecode(player.getPassword()));
         try {
             daoPlayerORM.update(player);
         } catch (SQLException throwables) {
@@ -45,6 +47,7 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
 
     @Override
     public void delete(Player player) {
+        player.setPassword(EncryptionCesar.getInstance().ecode(player.getPassword()));
         try {
             daoPlayerORM.delete(player);
         } catch (SQLException throwables) {
@@ -69,6 +72,9 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        for (Player player:players){
+            player.setPassword(EncryptionCesar.getInstance().decode(player.getPassword()));
+        }
         return players;
     }
 
@@ -89,6 +95,9 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        for (Player player:players){
+            player.setPassword(EncryptionCesar.getInstance().decode(player.getPassword()));
+        }
         return players;
     }
 
@@ -100,6 +109,7 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        player.setPassword(EncryptionCesar.getInstance().decode(player.getPassword()));
         return player;
     }
 }
