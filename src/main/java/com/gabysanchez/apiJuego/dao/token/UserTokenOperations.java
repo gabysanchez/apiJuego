@@ -1,8 +1,8 @@
-package com.gabysanchez.apiJuego.dao.tikets;
+package com.gabysanchez.apiJuego.dao.token;
 
 import java.util.List;
 
-public interface UserTiketOperations<T,K,E> {
+public interface UserTokenOperations<T,K,E> {
     public void create(E e);
     public void add(T t);
     public void delete(T t);

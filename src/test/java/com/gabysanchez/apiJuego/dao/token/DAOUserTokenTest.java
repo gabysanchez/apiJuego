@@ -1,11 +1,9 @@
-package com.gabysanchez.apiJuego.dao.tikets;
+package com.gabysanchez.apiJuego.dao.token;
 
 import com.gabysanchez.apiJuego.dao.DAOFactory;
-import com.gabysanchez.apiJuego.entities.Character;
-import com.gabysanchez.apiJuego.entities.UserTiket;
 import org.junit.jupiter.api.Test;
 
-class DAOUserTiketTest {
+class DAOUserTokenTest {
 
     @Test
     void add() {
@@ -20,7 +18,7 @@ class DAOUserTiketTest {
 
     @Test
     void delete() {
-        DAOFactory.getInstance().getDaoUserTiket().delete(DAOFactory.getInstance().getDaoUserTiket().get(2));
+        DAOFactory.getInstance().getDAOUserToken().delete(DAOFactory.getInstance().getDAOUserToken().get(2));
     }
 
     @Test
@@ -29,7 +27,7 @@ class DAOUserTiketTest {
 
     @Test
     void get() {
-        System.out.println(DAOFactory.getInstance().getDaoUserTiket().get());
+        System.out.println(DAOFactory.getInstance().getDAOUserToken().get());
     }
 
     @Test

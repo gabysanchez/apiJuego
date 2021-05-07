@@ -9,24 +9,24 @@ import java.util.List;
 
 @JacksonXmlRootElement(localName = "data")
 public class Data {
-    @JacksonXmlElementWrapper(localName = "tikets")
-    @JacksonXmlProperty(localName = "userTiket")
-    private List<UserTiket> userTikets;
+    @JacksonXmlElementWrapper(localName = "tokens")
+    @JacksonXmlProperty(localName = "userToken")
+    private List<UserToken> userTokens;
 
     public Data(){}
 
-    public Data(List<UserTiket> userTikets) {
-        if(userTikets != null) {
-            this.userTikets = userTikets;
+    public Data(List<UserToken> userTokens) {
+        if(userTokens != null) {
+            this.userTokens = userTokens;
         }
-        else this.userTikets = new ArrayList<>();
+        else this.userTokens = new ArrayList<>();
     }
 
-    public List<UserTiket> getUserTikets() {
-        return userTikets;
+    public List<UserToken> getUserTokens() {
+        return userTokens;
     }
 
-    public void setUserTikets(List<UserTiket> userTikets) {
-        this.userTikets = userTikets;
+    public void setUserTikets(List<UserToken> userTokens) {
+        this.userTokens = userTokens;
     }
 }

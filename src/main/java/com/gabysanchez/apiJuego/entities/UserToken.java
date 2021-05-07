@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@JacksonXmlRootElement(localName = "userTiket")
-public class UserTiket {
+@JacksonXmlRootElement(localName = "userToken")
+public class UserToken {
 
     public static Integer nextId = 1;
 
@@ -25,9 +25,9 @@ public class UserTiket {
     @JacksonXmlProperty(localName = "character")
     private List<Character> characters;
 
-    public UserTiket() { }
+    public UserToken() { }
 
-    public UserTiket(int _id, String alias) {
+    public UserToken(int _id, String alias) {
         this._id = _id;
         this.alias = alias;
 
@@ -36,8 +36,8 @@ public class UserTiket {
     public void startTime(){
         new Timer().schedule( new java.util.TimerTask() {
             @Override public void run() {
-                System.out.println("delete tiket: "+_id);
-                DAOFactory.getInstance().getDaoUserTiket().delete(DAOFactory.getInstance().getDaoUserTiket().get(_id));
+                System.out.println("delete Token: "+_id);
+                DAOFactory.getInstance().getDAOUserToken().delete(DAOFactory.getInstance().getDAOUserToken().get(_id));
             }
         }, 15000 );
     }

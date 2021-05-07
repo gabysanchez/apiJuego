@@ -2,7 +2,7 @@ package com.gabysanchez.apiJuego.dao;
 
 import com.gabysanchez.apiJuego.dao.characters.DAOCharactersORM;
 import com.gabysanchez.apiJuego.dao.players.DAOPlayerORM;
-import com.gabysanchez.apiJuego.dao.tikets.DAOUserTiket;
+import com.gabysanchez.apiJuego.dao.token.DAOUserToken;
 
 import java.sql.SQLException;
 
@@ -11,7 +11,7 @@ public class DAOFactory {
 
     private DAOPlayerORM daoPlayerORM;
     private DAOCharactersORM daoCharactersORM;
-    private DAOUserTiket daoUserTiket;
+    private DAOUserToken daoUserToken;
 
     private DAOFactory(){}
 
@@ -44,10 +44,10 @@ public class DAOFactory {
     }
 
 
-    public DAOUserTiket getDaoUserTiket() {
-        if(daoUserTiket == null){
-            daoUserTiket = new DAOUserTiket();
+    public DAOUserToken getDAOUserToken() {
+        if(daoUserToken == null){
+            daoUserToken = new DAOUserToken();
         }
-        return daoUserTiket;
+        return daoUserToken;
     }
 }

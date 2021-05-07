@@ -2,7 +2,7 @@ package com.gabysanchez.apiJuego.controllers.authentication;
 
 import com.gabysanchez.apiJuego.dao.DAOFactory;
 import com.gabysanchez.apiJuego.entities.Player;
-import com.gabysanchez.apiJuego.entities.UserTiket;
+import com.gabysanchez.apiJuego.entities.UserToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +24,7 @@ public class AuthenticationRestController {
             Player playerDB = DAOFactory.getInstance().getDAOPlayerORM().get(alias);
             if (password.equalsIgnoreCase(playerDB.getPassword())){
                 System.out.println("Dentro");
-                DAOFactory.getInstance().getDaoUserTiket().create(playerDB);
+                DAOFactory.getInstance().getDAOUserToken().create(playerDB);
             }else {
                 System.out.println("Contraseña Incorrecta");
             }
@@ -33,9 +33,9 @@ public class AuthenticationRestController {
         }
     }
 
-    @GetMapping (path = path+"/getAllUsersTikets", produces = "application/json")
-    public List<UserTiket> getAllUsersTikets(){
-        List<UserTiket> userTikets = DAOFactory.getInstance().getDaoUserTiket().get();
-        return userTikets;
+    @GetMapping (path = path+"/getAllUsersToken", produces = "application/json")
+    public List<UserToken> getAllUsersToken(){
+        List<UserToken> userTokens = DAOFactory.getInstance().getDAOUserToken().get();
+        return userTokens;
     }
 }

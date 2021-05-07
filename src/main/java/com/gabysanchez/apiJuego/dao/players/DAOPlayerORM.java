@@ -73,7 +73,8 @@ public class DAOPlayerORM implements DAOOperations<Player,String> {
             throwables.printStackTrace();
         }
         for (Player player:players){
-            player.setPassword(EncryptionCesar.getInstance().decode(player.getPassword()));
+            //player.setPassword(EncryptionCesar.getInstance().decode(player.getPassword()));
+            player.setPassword(null);
         }
         return players;
     }
