@@ -1,7 +1,13 @@
 package com.gabysanchez.apiJuego.entities;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.types.SqlDateType;
 import com.j256.ormlite.table.DatabaseTable;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 
 enum Sex {
     hombre,
@@ -30,6 +36,10 @@ public class Player {
 
     @ApiModelProperty(position = 4)
     @DatabaseField
+    private Date fechaNacimiento;
+
+
+    @DatabaseField
     private int edad;
 
     @ApiModelProperty(position = 5)
@@ -38,12 +48,16 @@ public class Player {
 
     public Player() { }
 
-    public Player(String alias, String password, String sexo, String pais, int edad, Character personaje) {
+    public Player(String alias, String password, String sexo, String pais, Date fechaNacimiento, Character personaje) {
+        LocalDate localDateFN = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localDateNow = LocalDate.now();
+        Period diff = Period.between(localDateFN, localDateNow);
         this.alias = alias;
         this.password = password;
         this.sexo = Sex.valueOf(sexo);
         this.pais = pais;
-        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.edad = diff.getYears();
         this.personaje = personaje;
     }
 
@@ -59,9 +73,6 @@ public class Player {
         return pais;
     }
 
-    public int getEdad() {
-        return edad;
-    }
 
     public Character getPersonaje() {
         return personaje;
@@ -79,12 +90,17 @@ public class Player {
         this.pais = pais;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
 
     public void setPersonaje(Character personaje) {
         this.personaje = personaje;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getPassword() {
