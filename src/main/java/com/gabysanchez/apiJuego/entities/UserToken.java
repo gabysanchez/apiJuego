@@ -39,7 +39,7 @@ public class UserToken {
                 System.out.println("delete Token: "+_id);
                 DAOFactory.getInstance().getDAOUserToken().delete(DAOFactory.getInstance().getDAOUserToken().get(_id));
             }
-        }, 15000 );
+        }, 30000 );
     }
 
     public int get_id() {
@@ -71,5 +71,14 @@ public class UserToken {
             this.characters = new ArrayList<>();
         }
         characters.add(character);
+    }
+
+    @Override
+    public String toString() {
+        return "UserToken{" +
+                "_id=" + _id +
+                ", alias='" + alias + '\'' +
+                ", characters=" + characters +
+                '}';
     }
 }

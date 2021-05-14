@@ -60,4 +60,13 @@ public class Character {
     public void setSalud(int salud) {
         this.salud = salud;
     }
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "nombre='" + nombre + '\'' +
+                ", color='" + color + '\'' +
+                ", salud=" + salud +
+                '}';
+    }
 }
